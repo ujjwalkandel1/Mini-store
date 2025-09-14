@@ -1,4 +1,3 @@
-// components/SearchBar.js
 import React, { useState, useContext, useEffect } from 'react';
 import { CartContext } from '../App';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,6 +7,7 @@ function SearchBar() {
   const { products, setProducts } = useContext(CartContext);
   const location = useLocation();
   const navigate = useNavigate();
+
 
   // Reset search term if navigating away from home or if component mounts
   useEffect(() => {

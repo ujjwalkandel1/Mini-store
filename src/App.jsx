@@ -1,16 +1,70 @@
-import { useState } from 'react'
+import React, { useState, createContext, useReducer } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
+import ProductListingPage from './components/ProductListingPage.jsx';
+import ProductDetailPage from './components/ProductDetailPage.jsx';
+import CartPage from './components/CartPage.jsx';
 
-import './App.css'
-import Header from './components/Header'
+// Create a Context for the cart
+export const CartContext = createContext();
+
+// Simple reducer for cart actions
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      const existingItem = state.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        return state.map(item =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...state, { ...action.payload, quantity: 1 }];
+    case 'REMOVE_FROM_CART':
+      return state.filter(item => item.id !== action.payload);
+    case 'UPDATE_QUANTITY':
+        return state.map(item =>
+            item.id === action.payload.id
+                ? { ...item, quantity: action.payload.quantity }
+                : item
+        );
+    default:
+      return state;
+  }
+};
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cart, dispatch] = useReducer(cartReducer, []);
+  const [products, setProducts] = useState([
+    // This would typically come from an API
+    { id: 1, name: 'Wireless Headphones', price: 99.99, category: 'Electronics', image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Headphones', description: 'High-quality wireless headphones with noise cancellation.' },
+    { id: 2, name: 'Smartwatch', price: 199.99, category: 'Electronics', image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Smartwatch', description: 'Track your fitness and receive notifications.' },
+    { id: 3, name: 'Leather Wallet', price: 45.00, category: 'Accessories', image: 'https://via.placeholder.com/150/00FF00/000000?text=Wallet', description: 'Genuine leather wallet with multiple card slots.' },
+    { id: 4, name: 'Coffee Mug', price: 12.50, category: 'Home Goods', image: 'https://via.placeholder.com/150/FFFF00/000000?text=Mug', description: 'Ceramic coffee mug, perfect for your morning brew.' },
+    { id: 5, name: 'Yoga Mat', price: 30.00, category: 'Fitness', image: 'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Yoga+Mat', description: 'Non-slip yoga mat for all your exercises.' },
+    { id: 6, name: 'Desk Lamp', price: 25.00, category: 'Home Goods', image: 'https://via.placeholder.com/150/00FFFF/000000?text=Lamp', description: 'Adjustable LED desk lamp.' },
+  ]);
 
   return (
-   <>
-   <Header />
-   </>
-  )
+    <CartContext.Provider value={{ cart, dispatch, products, setProducts }}>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow container mx-auto px-4 py-8">
+            <Routes>
+              <Route path="/" element={<ProductListingPage />} />
+              <Route path="/product/:id" element={<ProductDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </CartContext.Provider>
+  );
 }
 
-export default App
+export default App;
