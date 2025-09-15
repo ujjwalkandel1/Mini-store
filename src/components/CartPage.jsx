@@ -11,7 +11,7 @@ function CartPage() {
   };
 
   const handleUpdateQuantity = (id, quantity) => {
-    if (quantity < 1) return; // Prevent quantity from going below 1
+    if (quantity < 1) return; 
     dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
   };
 

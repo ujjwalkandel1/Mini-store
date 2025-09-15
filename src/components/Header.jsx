@@ -2,12 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../App";
 import SearchBar from "./SearchBar";
-import { FaShoppingCart } from "react-icons/fa"; // optional, modern cart icon
+import { FaShoppingCart } from "react-icons/fa"; 
 
 function Header() {
   const { cart } = useContext(CartContext);
 
-  // Total items in cart
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (

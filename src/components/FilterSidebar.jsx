@@ -6,7 +6,7 @@ function FilterSidebar({ onFilterChange, products }) {
   const [availableCategories, setAvailableCategories] = useState([]);
 
   useEffect(() => {
-    // Dynamically get categories from products
+    
     const categories = ['All', ...new Set(products.map(p => p.category))];
     setAvailableCategories(categories);
   }, [products]);
