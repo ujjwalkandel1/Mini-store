@@ -36,7 +36,7 @@ function ProductListingPage() {
     // }
 
     setFilteredProducts(tempProducts);
-  }, [products, filters]); // Re-run when products or filters change
+  }, [products, filters]); 
 
   const handleFilterChange = (newFilters) => {
     setFilters(prevFilters => ({ ...prevFilters, ...newFilters }));

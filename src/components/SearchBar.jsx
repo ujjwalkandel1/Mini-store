@@ -1,8 +1,7 @@
-// components/SearchBar.js
 import React, { useState, useContext, useEffect } from "react";
 import { CartContext } from "../App";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaSearch } from "react-icons/fa"; // search icon from react-icons
+import { FaSearch } from "react-icons/fa"; 
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,7 +11,7 @@ function SearchBar() {
 
   useEffect(() => {
     if (location.pathname !== "/") {
-      setSearchTerm(""); // Clear search if not on home
+      setSearchTerm(""); 
     }
   }, [location.pathname]);
 
@@ -21,7 +20,6 @@ function SearchBar() {
     if (location.pathname !== "/") {
       navigate("/");
     }
-    // ProductListingPage will handle filtering
   };
 
   return (
