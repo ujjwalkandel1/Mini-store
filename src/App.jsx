@@ -25,27 +25,147 @@ const cartReducer = (state, action) => {
     case 'REMOVE_FROM_CART':
       return state.filter(item => item.id !== action.payload);
     case 'UPDATE_QUANTITY':
-        return state.map(item =>
-            item.id === action.payload.id
-                ? { ...item, quantity: action.payload.quantity }
-                : item
-        );
+      return state.map(item =>
+        item.id === action.payload.id
+          ? { ...item, quantity: action.payload.quantity }
+          : item
+      );
     default:
       return state;
   }
 };
 
-
 function App() {
   const [cart, dispatch] = useReducer(cartReducer, []);
   const [products, setProducts] = useState([
-    // This would typically come from an API
-    { id: 1, name: 'Wireless Headphones', price: 99.99, category: 'Electronics', image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Headphones', description: 'High-quality wireless headphones with noise cancellation.' },
-    { id: 2, name: 'Smartwatch', price: 199.99, category: 'Electronics', image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Smartwatch', description: 'Track your fitness and receive notifications.' },
-    { id: 3, name: 'Leather Wallet', price: 45.00, category: 'Accessories', image: 'https://via.placeholder.com/150/00FF00/000000?text=Wallet', description: 'Genuine leather wallet with multiple card slots.' },
-    { id: 4, name: 'Coffee Mug', price: 12.50, category: 'Home Goods', image: 'https://via.placeholder.com/150/FFFF00/000000?text=Mug', description: 'Ceramic coffee mug, perfect for your morning brew.' },
-    { id: 5, name: 'Yoga Mat', price: 30.00, category: 'Fitness', image: 'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Yoga+Mat', description: 'Non-slip yoga mat for all your exercises.' },
-    { id: 6, name: 'Desk Lamp', price: 25.00, category: 'Home Goods', image: 'https://via.placeholder.com/150/00FFFF/000000?text=Lamp', description: 'Adjustable LED desk lamp.' },
+    {
+      id: 1,
+      name: "Wireless Headphones",
+      price: 99.99,
+      category: "Electronics",
+      image: "https://picsum.photos/400?random=1",
+      description: "High-quality wireless headphones with noise cancellation."
+    },
+    {
+      id: 2,
+      name: "Smartwatch",
+      price: 199.99,
+      category: "Electronics",
+      image: "https://picsum.photos/400?random=2",
+      description: "Track your fitness and receive notifications."
+    },
+    {
+      id: 3,
+      name: "Leather Wallet",
+      price: 45.00,
+      category: "Accessories",
+      image: "https://picsum.photos/400?random=3",
+      description: "Genuine leather wallet with multiple card slots."
+    },
+    {
+      id: 4,
+      name: "Coffee Mug",
+      price: 12.50,
+      category: "Home Goods",
+      image: "https://picsum.photos/400?random=4",
+      description: "Ceramic coffee mug, perfect for your morning brew."
+    },
+    {
+      id: 5,
+      name: "Yoga Mat",
+      price: 30.00,
+      category: "Fitness",
+      image: "https://picsum.photos/400?random=5",
+      description: "Non-slip yoga mat for all your exercises."
+    },
+    {
+      id: 6,
+      name: "Desk Lamp",
+      price: 25.00,
+      category: "Home Goods",
+      image: "https://picsum.photos/400?random=6",
+      description: "Adjustable LED desk lamp."
+    },
+    {
+      id: 7,
+      name: "Bluetooth Speaker",
+      price: 79.99,
+      category: "Electronics",
+      image: "https://picsum.photos/400?random=7",
+      description: "Portable Bluetooth speaker with rich bass and long battery life."
+    },
+    {
+      id: 8,
+      name: "Running Shoes",
+      price: 120.00,
+      category: "Fitness",
+      image: "https://picsum.photos/400?random=8",
+      description: "Comfortable running shoes for long distance runs."
+    },
+    {
+      id: 9,
+      name: "Sunglasses",
+      price: 35.00,
+      category: "Accessories",
+      image: "https://picsum.photos/400?random=9",
+      description: "Stylish sunglasses with UV protection."
+    },
+    {
+      id: 10,
+      name: "Backpack",
+      price: 65.00,
+      category: "Accessories",
+      image: "https://picsum.photos/400?random=10",
+      description: "Durable backpack—perfect for travel or daily commute."
+    },
+    {
+      id: 11,
+      name: "Gaming Mouse",
+      price: 49.99,
+      category: "Electronics",
+      image: "https://picsum.photos/400?random=11",
+      description: "High precision gaming mouse with customizable buttons."
+    },
+    {
+      id: 12,
+      name: "Desk Organizer",
+      price: 22.50,
+      category: "Home Goods",
+      image: "https://picsum.photos/400?random=12",
+      description: "Keep your desk tidy with multiple compartments."
+    },
+    {
+      id: 13,
+      name: "Water Bottle",
+      price: 18.00,
+      category: "Fitness",
+      image: "https://picsum.photos/400?random=13",
+      description: "Stainless steel water bottle, keeps drinks hot or cold."
+    },
+    {
+      id: 14,
+      name: "E-reader",
+      price: 129.99,
+      category: "Electronics",
+      image: "https://picsum.photos/400?random=14",
+      description: "Lightweight e-reader with adjustable backlight."
+    },
+    {
+      id: 15,
+      name: "Throw Pillow",
+      price: 25.00,
+      category: "Home Goods",
+      image: "https://picsum.photos/400?random=15",
+      description: "Soft decorative throw pillow for your sofa or bed."
+    },
+    {
+      id: 16,
+      name: "Wireless Charger",
+      price: 39.99,
+      category: "Electronics",
+      image: "https://picsum.photos/400?random=16",
+      description: "Wireless charger pad compatible with most smartphones."
+    }
   ]);
 
   return (

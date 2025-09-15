@@ -1,45 +1,43 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { CartContext } from '../App';
-import { useLocation, useNavigate } from 'react-router-dom';
+// components/SearchBar.js
+import React, { useState, useContext, useEffect } from "react";
+import { CartContext } from "../App";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"; // search icon from react-icons
 
 function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const { products, setProducts } = useContext(CartContext);
   const location = useLocation();
   const navigate = useNavigate();
 
-
-  // Reset search term if navigating away from home or if component mounts
   useEffect(() => {
-    if (location.pathname !== '/') {
-        setSearchTerm(''); // Clear search if not on the product listing page
+    if (location.pathname !== "/") {
+      setSearchTerm(""); // Clear search if not on home
     }
   }, [location.pathname]);
 
-
   const handleSearch = (e) => {
     e.preventDefault();
-    if (location.pathname !== '/') {
-        navigate('/'); // Navigate to home page to show search results
+    if (location.pathname !== "/") {
+      navigate("/");
     }
-    // The ProductListingPage will handle the actual filtering based on the search term
-    // We'll pass the search term via context or props later if needed,
-    // but for simplicity, we can just rely on the ProductListingPage to read the input.
+    // ProductListingPage will handle filtering
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center">
+    <form onSubmit={handleSearch} className="flex w-full max-w-md shadow-md">
       <input
         type="text"
-        placeholder="Search products..."
-        className="p-2 rounded-l-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+        placeholder="Search "
+        className="flex-1 p-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-900 transition"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button
         type="submit"
-        className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-r-md"
+        className="flex items-center bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white p-3 rounded-r-lg transition shadow-lg"
       >
+        <FaSearch className="mr-2" />
         Search
       </button>
     </form>
