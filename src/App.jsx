@@ -39,14 +39,56 @@ const cartReducer = (state, action) => {
 function App() {
   const [cart, dispatch] = useReducer(cartReducer, []);
   const [products, setProducts] = useState([
-    // This would typically come from an API
-    { id: 1, name: 'Wireless Headphones', price: 99.99, category: 'Electronics', image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Headphones', description: 'High-quality wireless headphones with noise cancellation.' },
-    { id: 2, name: 'Smartwatch', price: 199.99, category: 'Electronics', image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Smartwatch', description: 'Track your fitness and receive notifications.' },
-    { id: 3, name: 'Leather Wallet', price: 45.00, category: 'Accessories', image: 'https://via.placeholder.com/150/00FF00/000000?text=Wallet', description: 'Genuine leather wallet with multiple card slots.' },
-    { id: 4, name: 'Coffee Mug', price: 12.50, category: 'Home Goods', image: 'https://via.placeholder.com/150/FFFF00/000000?text=Mug', description: 'Ceramic coffee mug, perfect for your morning brew.' },
-    { id: 5, name: 'Yoga Mat', price: 30.00, category: 'Fitness', image: 'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Yoga+Mat', description: 'Non-slip yoga mat for all your exercises.' },
-    { id: 6, name: 'Desk Lamp', price: 25.00, category: 'Home Goods', image: 'https://via.placeholder.com/150/00FFFF/000000?text=Lamp', description: 'Adjustable LED desk lamp.' },
-  ]);
+  {
+    id: 1,
+    name: "Wireless Headphones",
+    price: 99.99,
+    category: "Electronics",
+    image: "https://picsum.photos/200/200?random=1",
+    description: "High-quality wireless headphones with noise cancellation.",
+  },
+  {
+    id: 2,
+    name: "Smartwatch",
+    price: 199.99,
+    category: "Electronics",
+    image: "https://picsum.photos/200/200?random=2",
+    description: "Track your fitness and receive notifications.",
+  },
+  {
+    id: 3,
+    name: "Leather Wallet",
+    price: 45.0,
+    category: "Accessories",
+    image: "https://picsum.photos/200/200?random=3",
+    description: "Genuine leather wallet with multiple card slots.",
+  },
+  {
+    id: 4,
+    name: "Coffee Mug",
+    price: 12.5,
+    category: "Home Goods",
+    image: "https://picsum.photos/200/200?random=4",
+    description: "Ceramic coffee mug, perfect for your morning brew.",
+  },
+  {
+    id: 5,
+    name: "Yoga Mat",
+    price: 30.0,
+    category: "Fitness",
+    image: "https://picsum.photos/200/200?random=5",
+    description: "Non-slip yoga mat for all your exercises.",
+  },
+  {
+    id: 6,
+    name: "Desk Lamp",
+    price: 25.0,
+    category: "Home Goods",
+    image: "https://picsum.photos/200/200?random=6",
+    description: "Adjustable LED desk lamp.",
+  },
+]);
+
 
   return (
     <CartContext.Provider value={{ cart, dispatch, products, setProducts }}>

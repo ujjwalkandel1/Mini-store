@@ -20,7 +20,7 @@ function SearchBar() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (location.pathname !== '/') {
-        navigate('/'); // Navigate to home page to show search results
+        navigate('/'); 
     }
     // The ProductListingPage will handle the actual filtering based on the search term
     // We'll pass the search term via context or props later if needed,
